@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { cn } from '../../lib/hooks'
 
 /**
- * Floating back-to-top control, pinned bottom-left.
+ * Floating back-to-top control, pinned bottom-right.
  *
  * The ring around it tracks scroll progress, which is what earns the button its
  * screen space — it is a position indicator that happens to be clickable, not
@@ -72,11 +72,11 @@ export default function BackToTop() {
         // technically visible and practically invisible — this has to read as
         // a control from the corner of the eye. It also matches the dark puck
         // on the nav CTA, so the two share a language.
-        'group fixed bottom-5 left-5 z-40 grid h-[52px] w-[52px] place-items-center rounded-full',
+        'group fixed bottom-5 right-5 z-40 grid h-[52px] w-[52px] place-items-center rounded-full',
         'bg-ink text-white shadow-[0_6px_20px_rgb(17_24_39/0.28)]',
         'transition-[opacity,transform,background-color,box-shadow] duration-300 ease-[var(--ease-out)]',
         'hover:bg-brand hover:text-ink hover:shadow-[0_10px_28px_rgb(244_185_66/0.5)]',
-        'sm:bottom-7 sm:left-7',
+        'sm:bottom-7 sm:right-7',
         visible
           ? 'pointer-events-auto translate-y-0 opacity-100'
           : 'pointer-events-none translate-y-3 opacity-0'
