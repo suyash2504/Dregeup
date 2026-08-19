@@ -5,6 +5,7 @@ import { useReveal } from '../../lib/hooks'
 import { Button } from '../ui/Button'
 import { Annotation, Doodle, Marked, Tape } from '../ui/Sketch'
 import { Pill, Stat } from '../ui/Bits'
+import HeroSearch from './HeroSearch'
 
 /**
  * Picks the most useful live fact for the hero badge: the nearest confirmed
@@ -120,22 +121,32 @@ export default function Hero() {
           </div>
         </div>
 
+        {/* ---------------- search ---------------- */}
+        <HeroSearch />
+
         {/* ---------------- stats card ---------------- */}
-        <div className="rv d5 mt-16 grid grid-cols-2 overflow-hidden rounded-[22px] border border-line bg-paper shadow-[var(--shadow-lift)] sm:grid-cols-3 lg:grid-cols-5">
-          {stats.map((s, i) => (
-            <div
-              key={s.label}
-              className={[
-                'transition-colors duration-300 hover:bg-brand-tint/60',
-                'border-line',
-                i < stats.length - 1 ? 'border-b sm:border-b-0' : '',
-                'lg:border-r lg:last:border-r-0',
-                i % 2 === 0 ? 'border-r sm:border-r' : 'sm:border-r',
-              ].join(' ')}
-            >
-              <Stat value={s.value} suffix={s.suffix} label={s.label} />
-            </div>
-          ))}
+        <div className="rv d5 mt-5 grid grid-cols-2 overflow-hidden rounded-[22px] border border-line bg-paper shadow-[var(--shadow-lift)] sm:grid-cols-3 lg:grid-cols-5">
+          {stats.map((s, i) => {
+            // Five cells into a 2-col grid leaves the last one stranded beside
+            // an empty box, so it spans the full row instead. The 3-col
+            // breakpoint divides evenly enough to leave alone.
+            const orphan2col = i === stats.length - 1 && stats.length % 2 === 1
+
+            return (
+              <div
+                key={s.label}
+                className={[
+                  'transition-colors duration-300 hover:bg-brand-tint/60',
+                  'border-b border-r border-line',
+                  orphan2col ? 'col-span-2 border-r-0 sm:col-span-1' : '',
+                  'last:border-b-0 sm:[&:nth-last-child(-n+2)]:border-b-0',
+                  'lg:border-b-0 lg:border-r lg:last:border-r-0',
+                ].join(' ')}
+              >
+                <Stat value={s.value} suffix={s.suffix} label={s.label} />
+              </div>
+            )
+          })}
         </div>
       </div>
     </section>

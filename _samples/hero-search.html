@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Dregeup — search in the hero?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FAF9F6; --paper:#FFFFFF; --ink:#111827; --soft:#1F2937;
+  --muted:#6B7280; --line:#E5E7EB; --brand:#F4B942; --brand2:#FFD76A;
+  --tint:#FFF7E6; --deep:#8F620D;
+  --shadow:0 1px 2px rgb(17 24 39/.04), 0 8px 24px rgb(17 24 39/.06);
+  --shadow-lg:0 2px 4px rgb(17 24 39/.04), 0 18px 48px rgb(17 24 39/.10);
+  --ease:cubic-bezier(.2,.7,.3,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:var(--bg);color:var(--ink);
+  -webkit-font-smoothing:antialiased;padding:36px 0 100px}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+input{font:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+.intro h1{font-size:30px;font-weight:800;letter-spacing:-.04em}
+.intro p{margin-top:8px;color:var(--muted);font-size:15px;line-height:1.65;max-width:700px}
+.intro{margin-bottom:30px}
+
+.meta{display:flex;align-items:baseline;gap:10px;margin:0 0 10px 4px;flex-wrap:wrap}
+.meta b{font-size:13px;font-weight:800}
+.meta span{font-size:12.5px;color:var(--muted)}
+.meta i{font-style:normal;font-size:11px;font-weight:700;text-transform:uppercase;
+  letter-spacing:.1em;color:var(--deep);background:var(--tint);border:1px solid #EBD9AE;
+  padding:2px 7px;border-radius:99px}
+
+.stage{border:1px solid var(--line);border-radius:24px;overflow:hidden;margin-bottom:26px;
+  background:var(--bg);box-shadow:var(--shadow)}
+.hero{position:relative;padding:34px 40px 44px;
+  background-image:
+    linear-gradient(rgb(17 24 39/.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(17 24 39/.05) 1px, transparent 1px);
+  background-size:30px 30px}
+.cols{display:grid;grid-template-columns:1.04fr .96fr;gap:48px;align-items:center}
+@media(max-width:960px){.cols{grid-template-columns:1fr;gap:34px}}
+
+h2.hh{font-size:clamp(32px,3.6vw,50px);line-height:1.03;letter-spacing:-.045em;font-weight:800}
+.sub{color:var(--muted);font-size:16px;line-height:1.62;max-width:470px;margin-top:16px}
+
+.pill{display:inline-flex;align-items:center;gap:9px;background:var(--paper);
+  border:1px solid var(--line);border-radius:99px;padding:7px 15px 7px 9px;
+  font-size:13px;font-weight:600;color:var(--soft);box-shadow:var(--shadow)}
+.pill .dot{width:8px;height:8px;border-radius:99px;background:var(--brand);
+  box-shadow:0 0 0 4px rgb(244 185 66/.22)}
+.pill em{font-style:normal;color:var(--muted);font-weight:500}
+
+.ul{position:relative;display:inline-block;white-space:nowrap}
+.ul svg{position:absolute;left:-2%;bottom:-.26em;width:104%;height:.4em;overflow:visible}
+.ul path{fill:none;stroke:var(--brand);stroke-width:9;stroke-linecap:round}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;font-weight:700;
+  font-size:15px;padding:15px 26px;border-radius:14px;border:1px solid transparent;
+  transition:transform .25s var(--ease),box-shadow .25s,background .25s,border-color .25s}
+.btn svg{transition:transform .25s var(--ease)}
+.btn:hover svg{transform:translateX(3px)}
+.bp{background:var(--brand);color:var(--ink)}
+.bp:hover{background:var(--brand2);transform:translateY(-2px);box-shadow:0 10px 26px rgb(244 185 66/.42)}
+.bs{background:var(--paper);color:var(--ink);border-color:var(--line)}
+.bs:hover{transform:translateY(-2px);border-color:var(--ink);box-shadow:var(--shadow)}
+
+/* search bar */
+.search{display:flex;align-items:center;gap:8px;background:var(--paper);border:1px solid var(--line);
+  border-radius:16px;padding:8px 8px 8px 18px;box-shadow:var(--shadow-lg);
+  transition:box-shadow .3s,border-color .3s;max-width:520px}
+.search:focus-within{border-color:var(--brand);box-shadow:0 0 0 4px rgb(244 185 66/.18),var(--shadow-lg)}
+.search input{flex:1;min-width:0;border:0;outline:0;font-size:15px;background:transparent;
+  color:var(--ink);padding:11px 0}
+.search input::placeholder{color:var(--muted)}
+.search .go{background:var(--brand);color:var(--ink);border-radius:11px;padding:11px 18px;
+  font-weight:700;font-size:14px;transition:background .25s,transform .25s var(--ease);flex:none}
+.search .go:hover{background:var(--brand2);transform:translateY(-1px)}
+.search .puckgo{display:grid;place-items:center;width:38px;height:38px;border-radius:99px;
+  background:var(--ink);color:var(--brand);flex:none;transition:transform .25s var(--ease)}
+.search .puckgo:hover{transform:rotate(-45deg)}
+
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}
+.chip{font-size:12.5px;font-weight:600;padding:6px 13px;border-radius:99px;background:var(--paper);
+  border:1px solid var(--line);color:var(--soft);transition:.25s var(--ease)}
+.chip:hover{background:var(--brand);border-color:var(--brand);color:var(--ink);transform:translateY(-1px)}
+.chiplabel{font-size:12.5px;color:var(--muted);font-weight:600;align-self:center;margin-right:2px}
+
+/* taped photo */
+.frame{position:relative;background:var(--paper);padding:12px;border-radius:20px;
+  box-shadow:var(--shadow-lg);transform:rotate(-1.6deg)}
+.frame img{display:block;width:100%;aspect-ratio:4/3.35;object-fit:cover;border-radius:12px}
+.tape{position:absolute;top:-14px;left:50%;transform:translateX(-50%) rotate(-2deg);
+  width:104px;height:28px;background:rgb(244 185 66/.5);border-radius:2px}
+.bubble{position:absolute;right:-14px;top:26px;background:var(--ink);color:#fff;
+  padding:9px 16px;border-radius:16px 16px 16px 4px;font-family:'Caveat',cursive;font-size:19px;
+  line-height:1;box-shadow:var(--shadow-lg);z-index:2}
+.hand{font-family:'Caveat',cursive;font-size:19px;color:var(--deep);display:inline-flex;
+  align-items:center;gap:8px;margin-top:20px}
+
+.foot{margin-top:40px;padding-top:26px;border-top:1px solid var(--line)}
+.foot p{color:var(--muted);font-size:14.5px;line-height:1.7;max-width:700px}
+.foot p+p{margin-top:12px}
+.fh{font-family:'Caveat',cursive;font-size:21px;color:var(--deep)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="intro">
+    <h1>Search in the hero — 4 ways</h1>
+    <p>Dregeup ka core kaam college dhoondhna hai, par abhi search <em>/colleges</em> pe hai —
+       ek click door. Sawaal ye nahi ki search chahiye ya nahi; sawaal ye hai ki wo do CTA
+       buttons ki jagah kaise leti hai bina hero ko bhaari banaye.</p>
+  </div>
+
+  <!-- 00 current -->
+  <div class="meta"><b>00</b><i>current</i><span>Koi search nahi — do buttons</span></div>
+  <div class="stage"><div class="hero"><div class="cols">
+    <div>
+      <span class="pill"><span class="dot"></span>CAT 2026 registration closes <em>15 Sept 2026</em></span>
+      <h2 class="hh" style="margin-top:22px">Guiding talents,<br>shaping <span class="ul">futures<svg viewBox="0 0 300 22" preserveAspectRatio="none"><path d="M4 15 C 62 4, 128 20, 296 8"/></svg></span>.</h2>
+      <p class="sub">Explore top colleges, discover the right courses and get admission guidance — all in one place.</p>
+      <div style="display:flex;gap:11px;flex-wrap:wrap;margin-top:26px">
+        <a class="btn bp">Explore Colleges <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn bs">Take Free Assessment</a>
+      </div>
+      <span class="hand"><svg width="38" height="20" viewBox="0 0 42 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 4 C 14 2, 24 10, 30 19"/><path d="M24 19 L31 20 L29 13"/></svg>Takes about 8 minutes</span>
+    </div>
+    <div style="position:relative">
+      <div class="frame"><span class="tape"></span><img src="/photos/hero-lecture.jpg" alt=""></div>
+      <span class="bubble">Dream Big!</span>
+    </div>
+  </div></div></div>
+
+  <!-- A -->
+  <div class="meta"><b>A</b><span>Search buttons ki <em>jagah</em> — sabse direct, hero halka rehta hai</span></div>
+  <div class="stage"><div class="hero"><div class="cols">
+    <div>
+      <span class="pill"><span class="dot"></span>CAT 2026 registration closes <em>15 Sept 2026</em></span>
+      <h2 class="hh" style="margin-top:22px">Guiding talents,<br>shaping <span class="ul">futures<svg viewBox="0 0 300 22" preserveAspectRatio="none"><path d="M4 15 C 62 4, 128 20, 296 8"/></svg></span>.</h2>
+      <p class="sub">Explore top colleges, discover the right courses and get admission guidance — all in one place.</p>
+      <div class="search" style="margin-top:26px">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#6B7280" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.2-3.2"/></svg>
+        <input placeholder="MBA in Pune, B.Tech, NMIMS…">
+        <button class="go">Search</button>
+      </div>
+      <span class="hand"><svg width="38" height="20" viewBox="0 0 42 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 4 C 14 2, 24 10, 30 19"/><path d="M24 19 L31 20 L29 13"/></svg>Ya seedha counsellor se baat karo</span>
+    </div>
+    <div style="position:relative">
+      <div class="frame"><span class="tape"></span><img src="/photos/hero-lecture.jpg" alt=""></div>
+      <span class="bubble">Dream Big!</span>
+    </div>
+  </div></div></div>
+
+  <!-- B -->
+  <div class="meta"><b>B</b><span>Search + chips — chips batate hain ki search me daalna kya hai</span></div>
+  <div class="stage"><div class="hero"><div class="cols">
+    <div>
+      <span class="pill"><span class="dot"></span>CAT 2026 registration closes <em>15 Sept 2026</em></span>
+      <h2 class="hh" style="margin-top:22px">Guiding talents,<br>shaping <span class="ul">futures<svg viewBox="0 0 300 22" preserveAspectRatio="none"><path d="M4 15 C 62 4, 128 20, 296 8"/></svg></span>.</h2>
+      <p class="sub">Explore top colleges, discover the right courses and get admission guidance — all in one place.</p>
+      <div class="search" style="margin-top:26px">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#6B7280" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.2-3.2"/></svg>
+        <input placeholder="College, course ya city…">
+        <button class="puckgo"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      </div>
+      <div class="chips">
+        <span class="chiplabel">Popular:</span>
+        <a class="chip">MBA</a><a class="chip">B.Tech</a><a class="chip">MBBS</a><a class="chip">Pune</a><a class="chip">Mumbai</a>
+      </div>
+    </div>
+    <div style="position:relative">
+      <div class="frame"><span class="tape"></span><img src="/photos/hero-lecture.jpg" alt=""></div>
+      <span class="bubble">Dream Big!</span>
+    </div>
+  </div></div></div>
+
+  <!-- C -->
+  <div class="meta"><b>C</b><span>Search + secondary button dono — assessment ka rasta bacha rehta hai</span></div>
+  <div class="stage"><div class="hero"><div class="cols">
+    <div>
+      <span class="pill"><span class="dot"></span>CAT 2026 registration closes <em>15 Sept 2026</em></span>
+      <h2 class="hh" style="margin-top:22px">Guiding talents,<br>shaping <span class="ul">futures<svg viewBox="0 0 300 22" preserveAspectRatio="none"><path d="M4 15 C 62 4, 128 20, 296 8"/></svg></span>.</h2>
+      <p class="sub">Explore top colleges, discover the right courses and get admission guidance — all in one place.</p>
+      <div class="search" style="margin-top:24px">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#6B7280" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.2-3.2"/></svg>
+        <input placeholder="MBA in Pune, B.Tech, NMIMS…">
+        <button class="go">Search</button>
+      </div>
+      <div style="display:flex;align-items:center;gap:14px;margin-top:16px;flex-wrap:wrap">
+        <span style="font-size:13.5px;color:var(--muted);font-weight:600">Pata nahi kya dhoondhna hai?</span>
+        <a class="btn bs" style="padding:11px 20px;font-size:14px">Take Free Assessment</a>
+      </div>
+    </div>
+    <div style="position:relative">
+      <div class="frame"><span class="tape"></span><img src="/photos/hero-lecture.jpg" alt=""></div>
+      <span class="bubble">Dream Big!</span>
+    </div>
+  </div></div></div>
+
+  <!-- D -->
+  <div class="meta"><b>D</b><span>Search hero ke <em>neeche</em>, poori chaudai me — hero chheda nahi jata</span></div>
+  <div class="stage"><div class="hero">
+    <div class="cols">
+      <div>
+        <span class="pill"><span class="dot"></span>CAT 2026 registration closes <em>15 Sept 2026</em></span>
+        <h2 class="hh" style="margin-top:22px">Guiding talents,<br>shaping <span class="ul">futures<svg viewBox="0 0 300 22" preserveAspectRatio="none"><path d="M4 15 C 62 4, 128 20, 296 8"/></svg></span>.</h2>
+        <p class="sub">Explore top colleges, discover the right courses and get admission guidance — all in one place.</p>
+        <div style="display:flex;gap:11px;flex-wrap:wrap;margin-top:26px">
+          <a class="btn bp">Explore Colleges <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a class="btn bs">Take Free Assessment</a>
+        </div>
+      </div>
+      <div style="position:relative">
+        <div class="frame"><span class="tape"></span><img src="/photos/hero-lecture.jpg" alt=""></div>
+        <span class="bubble">Dream Big!</span>
+      </div>
+    </div>
+    <div style="margin-top:34px;background:var(--paper);border:1px solid var(--line);border-radius:20px;
+      padding:20px 22px;box-shadow:var(--shadow-lg);display:flex;align-items:center;gap:18px;flex-wrap:wrap">
+      <span style="font-size:14.5px;font-weight:800;letter-spacing:-.02em;flex:none">Start your search</span>
+      <div class="search" style="flex:1;box-shadow:none;max-width:none;min-width:240px">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#6B7280" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.2-3.2"/></svg>
+        <input placeholder="College, course ya city…">
+        <button class="go">Search</button>
+      </div>
+    </div>
+  </div></div>
+
+  <div class="foot">
+    <p class="fh">Meri raay</p>
+    <p><b>B</b>.</p>
+    <p>
+      Search ko buttons ki jagah lena chahiye, unke saath nahi — warna hero me teen
+      competing actions ho jate hain aur koi bhi jeet nahi paata. <b>A</b> aur <b>B</b> dono
+      ye karte hain; <b>B</b> better hai kyunki khaali search box ke saamne log soch me
+      pad jate hain ("kya likhun — college ka naam? course? city?"). Chips wo sawaal
+      khatam kar dete hain, aur saath hi ye bhi bata dete hain ki catalogue me hai kya.
+      Puck button navbar wale CTA se match bhi karta hai.
+    </p>
+    <p>
+      <b>C</b> tab lo agar assessment ko hero me hi rakhna zaroori lage — par wo line
+      ("Pata nahi kya dhoondhna hai?") search se dhyan hata deti hai.
+      <b>D</b> sabse safe hai, hero bilkul waisa ka waisa, par search stats card se pehle
+      ek aur horizontal band daal deta hai — page bhaari lagne lagta hai.
+    </p>
+    <p>
+      Ek cheez jo A/B/C teeno me hai: "Explore Colleges" button khatam ho jata hai. Wo
+      theek hai — search wahi kaam behtar karta hai, aur wo button waise bhi sirf
+      /colleges pe le jata tha.
+    </p>
+  </div>
+</div>
+</body>
+</html>

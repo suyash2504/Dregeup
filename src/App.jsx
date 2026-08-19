@@ -2,6 +2,7 @@ import { Suspense, lazy, useEffect } from 'react'
 import { Route, Routes, useLocation } from 'react-router-dom'
 import Navbar from './components/layout/Navbar'
 import Footer from './components/layout/Footer'
+import BackToTop from './components/layout/BackToTop'
 import Home from './pages/Home'
 
 // Home ships in the main bundle; everything else is split per route.
@@ -40,7 +41,7 @@ export default function App() {
     <>
       <ScrollToTop />
       <Navbar />
-      <main id="main">
+      <main id="main" tabIndex={-1} className="outline-none">
         <Suspense fallback={<RouteFallback />}>
           <Routes>
             <Route path="/" element={<Home />} />
@@ -61,6 +62,7 @@ export default function App() {
         </Suspense>
       </main>
       <Footer />
+      <BackToTop />
     </>
   )
 }

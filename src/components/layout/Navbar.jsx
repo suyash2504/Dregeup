@@ -72,13 +72,6 @@ export default function Navbar() {
             ))}
           </ul>
 
-          <Link
-            to="/contact"
-            className="hidden text-[14px] font-semibold text-ink-soft transition-colors hover:text-ink sm:block"
-          >
-            Contact
-          </Link>
-
           {/* Wrapped rather than given `hidden` directly: Button's base class
               carries `inline-flex`, and two display utilities on one element
               resolve by stylesheet order, not by class order. */}

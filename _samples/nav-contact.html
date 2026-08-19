@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Dregeup — where Contact goes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FAF9F6; --paper:#FFFFFF; --ink:#111827; --soft:#1F2937;
+  --muted:#6B7280; --line:#E5E7EB; --brand:#F4B942; --brand2:#FFD76A;
+  --tint:#FFF7E6; --deep:#8F620D;
+  --shadow:0 1px 2px rgb(17 24 39/.04), 0 8px 24px rgb(17 24 39/.06);
+  --ease:cubic-bezier(.2,.7,.3,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:var(--bg);color:var(--ink);
+  -webkit-font-smoothing:antialiased;
+  background-image:
+    linear-gradient(rgb(17 24 39/.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(17 24 39/.05) 1px, transparent 1px);
+  background-size:30px 30px;
+  padding:40px 0 120px;
+}
+a{color:inherit;text-decoration:none}
+button{font:inherit;border:0;background:none;cursor:pointer;color:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+
+.intro h1{font-size:30px;font-weight:800;letter-spacing:-.04em}
+.intro p{margin-top:8px;color:var(--muted);font-size:15px;line-height:1.65;max-width:680px}
+.intro{margin-bottom:36px}
+
+.row{margin-bottom:16px}
+.meta{display:flex;align-items:baseline;gap:10px;margin:0 0 8px 4px;flex-wrap:wrap}
+.meta b{font-size:13px;font-weight:800}
+.meta span{font-size:12.5px;color:var(--muted)}
+.meta i{font-style:normal;font-size:11px;font-weight:700;text-transform:uppercase;
+  letter-spacing:.1em;color:var(--deep);background:var(--tint);border:1px solid #EBD9AE;
+  padding:2px 7px;border-radius:99px}
+
+/* --- the real navbar --- */
+.nav{
+  display:flex;align-items:center;gap:26px;background:rgb(255 255 255/.82);
+  backdrop-filter:blur(16px);border:1px solid var(--line);border-radius:99px;
+  padding:11px 11px 11px 24px;box-shadow:var(--shadow);
+}
+.nav .logo{font-weight:800;letter-spacing:-.045em;font-size:19px;margin-right:auto;
+  display:flex;align-items:center;gap:9px}
+.nav .logo b{width:9px;height:9px;background:var(--brand);border-radius:3px;display:block;transform:rotate(45deg)}
+.nav ul{display:flex;gap:24px;list-style:none;font-size:14px;font-weight:600;color:var(--soft);align-items:center}
+.nav li{position:relative;cursor:pointer;padding:3px 0}
+.nav li.u:after{content:'';position:absolute;left:0;right:100%;bottom:-2px;height:2px;
+  background:var(--brand);border-radius:2px;transition:right .3s var(--ease)}
+.nav li.u:hover:after{right:0}
+
+/* the CTA, as it now is on the site */
+.cta{display:inline-flex;align-items:center;gap:12px;background:var(--brand);color:var(--ink);
+  padding:6px 8px 6px 20px;border-radius:99px;font-weight:700;font-size:14px;
+  transition:transform .25s var(--ease),box-shadow .25s,background .25s}
+.cta .puck{display:grid;place-items:center;width:30px;height:30px;border-radius:99px;
+  background:var(--ink);color:var(--brand);flex:none;transition:transform .25s var(--ease)}
+.cta:hover{background:var(--brand2);transform:translateY(-1px);box-shadow:0 8px 20px rgb(244 185 66/.4)}
+.cta:hover .puck{transform:rotate(-45deg)}
+
+/* --- contact treatments --- */
+.c-plain{font-size:14px;font-weight:600;color:var(--soft);transition:color .2s}
+.c-plain:hover{color:var(--ink)}
+
+.c-muted{font-size:14px;font-weight:600;color:var(--muted);transition:color .2s}
+.c-muted:hover{color:var(--ink)}
+
+.divider{width:1px;height:20px;background:var(--line);flex:none}
+
+.c-icon{display:grid;place-items:center;width:38px;height:38px;border-radius:99px;
+  border:1px solid var(--line);background:var(--paper);color:var(--soft);flex:none;
+  transition:transform .25s var(--ease),background .25s,border-color .25s,color .25s}
+.c-icon:hover{background:var(--tint);border-color:var(--brand);color:var(--deep);transform:translateY(-1px)}
+
+.c-outline{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:700;
+  padding:10px 18px;border-radius:99px;border:1px solid var(--line);background:var(--paper);
+  transition:transform .25s var(--ease),border-color .25s,box-shadow .25s}
+.c-outline:hover{border-color:var(--ink);transform:translateY(-1px);box-shadow:var(--shadow)}
+
+.c-phone{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:700;color:var(--ink);
+  transition:color .2s}
+.c-phone svg{color:var(--deep)}
+.c-phone:hover{color:var(--deep)}
+
+.c-tint{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:700;
+  padding:10px 18px;border-radius:99px;background:var(--tint);color:var(--deep);
+  border:1px solid #EBD9AE;transition:transform .25s var(--ease),background .25s}
+.c-tint:hover{background:var(--brand);color:var(--ink);border-color:var(--brand);transform:translateY(-1px)}
+
+.foot{margin-top:56px;padding-top:28px;border-top:1px solid var(--line)}
+.foot p{color:var(--muted);font-size:14.5px;line-height:1.7;max-width:700px}
+.foot p+p{margin-top:12px}
+.hand{font-family:'Caveat',cursive;font-size:21px;color:var(--deep)}
+@media(max-width:1150px){.nav ul{display:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="intro">
+    <h1>Where "Contact" belongs — 8 options</h1>
+    <p>Abhi ka problem: Contact list ke <em>bahar</em> hai, isliye uspe hover underline nahi
+       aata — par font, size aur colour baaki nav items jaisa hi hai. Dikhta 7th item jaisa
+       hai, behave alag karta hai. Neeche har option asli navbar me hai, naye puck CTA ke saath.</p>
+  </div>
+
+  <!-- 01 current -->
+  <div class="row">
+    <div class="meta"><b>01</b><i>current</i><span>Bahar, par dikhne me same — yahi ajeeb lag raha hai</span></div>
+    <nav class="nav">
+      <span class="logo"><b></b>dregeup</span>
+      <ul><li class="u">Colleges</li><li class="u">Courses</li><li class="u">Exams</li><li class="u">Assessment</li><li class="u">Blogs</li><li class="u">About</li></ul>
+      <a class="c-plain">Contact</a>
+      <a class="cta">Free Counselling<span class="puck"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+    </nav>
+  </div>
+
+  <!-- 02 -->
+  <div class="row">
+    <div class="meta"><b>02</b><span>List ke andar — 7th nav item ban jata hai, same underline</span></div>
+    <nav class="nav">
+      <span class="logo"><b></b>dregeup</span>
+      <ul><li class="u">Colleges</li><li class="u">Courses</li><li class="u">Exams</li><li class="u">Assessment</li><li class="u">Blogs</li><li class="u">About</li><li class="u">Contact</li></ul>
+      <a class="cta">Free Counselling<span class="puck"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+    </nav>
+  </div>
+
+  <!-- 03 -->
+  <div class="row">
+    <div class="meta"><b>03</b><span>Hata do — Contact footer me aur CTA me pehle se hai</span></div>
+    <nav class="nav">
+      <span class="logo"><b></b>dregeup</span>
+      <ul><li class="u">Colleges</li><li class="u">Courses</li><li class="u">Exams</li><li class="u">Assessment</li><li class="u">Blogs</li><li class="u">About</li></ul>
+      <a class="cta">Free Counselling<span class="puck"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+    </nav>
+  </div>
+
+  <!-- 04 -->
+  <div class="row">
+    <div class="meta"><b>04</b><span>Divider — hairline se saaf batata hai ki ye alag group hai</span></div>
+    <nav class="nav">
+      <span class="logo"><b></b>dregeup</span>
+      <ul><li class="u">Colleges</li><li class="u">Courses</li><li class="u">Exams</li><li class="u">Assessment</li><li class="u">Blogs</li><li class="u">About</li></ul>
+      <span class="divider"></span>
+      <a class="c-plain">Contact</a>
+      <a class="cta">Free Counselling<span class="puck"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+    </nav>
+  </div>
+
+  <!-- 05 -->
+  <div class="row">
+    <div class="meta"><b>05</b><span>Muted colour — secondary padhta hai, nav item nahi</span></div>
+    <nav class="nav">
+      <span class="logo"><b></b>dregeup</span>
+      <ul><li class="u">Colleges</li><li class="u">Courses</li><li class="u">Exams</li><li class="u">Assessment</li><li class="u">Blogs</li><li class="u">About</li></ul>
+      <a class="c-muted">Contact</a>
+      <a class="cta">Free Counselling<span class="puck"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+    </nav>
+  </div>
+
+  <!-- 06 -->
+  <div class="row">
+    <div class="meta"><b>06</b><span>Icon button — jagah bachti hai, CTA ke saath pair banata hai</span></div>
+    <nav class="nav">
+      <span class="logo"><b></b>dregeup</span>
+      <ul><li class="u">Colleges</li><li class="u">Courses</li><li class="u">Exams</li><li class="u">Assessment</li><li class="u">Blogs</li><li class="u">About</li></ul>
+      <a class="c-icon" title="Contact" aria-label="Contact">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6.5A2.5 2.5 0 0 1 6.5 4h11A2.5 2.5 0 0 1 20 6.5v7a2.5 2.5 0 0 1-2.5 2.5H10l-4.5 3.5V16H6.5A2.5 2.5 0 0 1 4 13.5Z"/></svg>
+      </a>
+      <a class="cta">Free Counselling<span class="puck"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+    </nav>
+  </div>
+
+  <!-- 07 -->
+  <div class="row">
+    <div class="meta"><b>07</b><span>Asli phone number — sabse useful, trust bhi banata hai</span></div>
+    <nav class="nav">
+      <span class="logo"><b></b>dregeup</span>
+      <ul><li class="u">Colleges</li><li class="u">Courses</li><li class="u">Exams</li><li class="u">Assessment</li><li class="u">Blogs</li><li class="u">About</li></ul>
+      <a class="c-phone">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a1 1 0 0 1-1 1A16 16 0 0 1 4 5a1 1 0 0 1 1-1Z"/></svg>
+        87705 79905
+      </a>
+      <a class="cta">Free Counselling<span class="puck"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+    </nav>
+  </div>
+
+  <!-- 08 -->
+  <div class="row">
+    <div class="meta"><b>08</b><span>Outlined pill — CTA ke saath do-button jodi banti hai</span></div>
+    <nav class="nav">
+      <span class="logo"><b></b>dregeup</span>
+      <ul><li class="u">Colleges</li><li class="u">Courses</li><li class="u">Exams</li><li class="u">Assessment</li><li class="u">Blogs</li><li class="u">About</li></ul>
+      <a class="c-outline">Contact</a>
+      <a class="cta">Free Counselling<span class="puck"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+    </nav>
+  </div>
+
+  <div class="foot">
+    <p class="hand">Meri raay</p>
+    <p>
+      <b>03 (hata do)</b> ya <b>07 (phone number)</b>.
+    </p>
+    <p>
+      Asli baat ye hai ki ek admission consultancy ke liye <b>"Contact" aur "Free Counselling"
+      lagbhag ek hi cheez hai</b> — dono ka matlab hai "kisi insaan se baat karo". Do
+      alag-alag entry points dene se visitor ek second ruk jata hai, aur wo ruk-na hi tumhe
+      ajeeb lag raha hai. Shape ki problem baad me hai, duplication pehle.
+    </p>
+    <p>
+      <b>03</b> sabse saaf hai — CTA hi contact ka kaam kar deta hai, aur address/phone/email
+      footer me pehle se poora hai. <b>07</b> tab lo agar phone number upar dikhana zaroori
+      lage: ye duplicate nahi hai (ye <em>turant</em> call hai, jabki CTA form hai), aur
+      Indian education market me visible number trust kaafi badhata hai.
+    </p>
+    <p>
+      Agar shabd "Contact" hi rakhna hai to <b>04</b> — hairline divider bina kuch bole
+      bata deta hai ki ye alag group hai. <b>02</b> se bhi kaam chalega par tab nav 7 items
+      ka ho jayega, thoda bhara-bhara.
+    </p>
+  </div>
+</div>
+</body>
+</html>
