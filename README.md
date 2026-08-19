@@ -143,3 +143,26 @@ Routes are code-split; only Home ships in the initial bundle.
 `#F4B942` is a *surface* colour — as text it lands near 1.9:1 on the off-white.
 The deep value clears 5:1 on tint, background and white. Do not lighten it back
 toward the accent yellow without re-checking contrast.
+
+---
+
+## Social previews
+
+`public/og-image.png` (1200x630) is generated from `scripts/og-template.html`:
+
+```bash
+node scripts/build-og.mjs
+```
+
+It is **not** wired into `npm run build`. The card only changes when the
+tagline or the headline stats change, and nobody should need Playwright
+installed to build the site — the script borrows Playwright from the sibling
+`S7-labs` project rather than adding a ~300MB browser download to this
+lockfile. Regenerate by hand after editing the template.
+
+**The social tags in `index.html` are static, and they are the ones that
+matter.** WhatsApp, Facebook, LinkedIn and X fetch raw HTML and do not execute
+JavaScript, so the per-route tags `useSeo()` writes at runtime are invisible to
+them: every shared link — `/exams/cat`, `/colleges/nmims`, anything — previews
+with the generic card. Route-specific previews need prerendering or SSR. Until
+that exists, keep the static tags generic enough to be true of any page.

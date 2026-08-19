@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Caveat:wght@700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{width:1200px;height:630px;overflow:hidden}
+  body{
+    font-family:'Plus Jakarta Sans',sans-serif;
+    background:#FAF9F6;
+    background-image:
+      linear-gradient(rgba(17,24,39,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(17,24,39,.05) 1px, transparent 1px);
+    background-size:40px 40px;
+    color:#111827;
+    position:relative;
+    padding:64px 72px;
+    display:flex;
+    flex-direction:column;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .logo{display:flex;align-items:center;gap:14px;font-size:34px;font-weight:800;letter-spacing:-.045em}
+  .logo i{width:16px;height:16px;background:#F4B942;border-radius:5px;transform:rotate(45deg);display:block}
+
+  h1{margin-top:auto;font-size:88px;line-height:1.02;letter-spacing:-.05em;font-weight:800;max-width:900px}
+  .ul{position:relative;display:inline-block;white-space:nowrap}
+  .ul svg{position:absolute;left:-2%;bottom:-.22em;width:104%;height:.38em;overflow:visible}
+  .ul path{fill:none;stroke:#F4B942;stroke-width:9;stroke-linecap:round}
+
+  p.sub{margin-top:26px;font-size:27px;line-height:1.5;color:#6B7280;max-width:760px;font-weight:500}
+
+  .stats{margin-top:auto;padding-top:38px;border-top:1px solid #E5E7EB;display:flex;gap:56px;align-items:flex-end}
+  .stat b{display:block;font-size:40px;font-weight:800;letter-spacing:-.04em;line-height:1}
+  .stat span{display:block;margin-top:7px;font-size:17px;font-weight:600;color:#6B7280}
+  .hand{margin-left:auto;font-family:'Caveat',cursive;font-size:34px;color:#8F620D}
+
+  .doodle{position:absolute;color:#F4B942}
+  .tape{position:absolute;top:-16px;left:50%;transform:translateX(-50%) rotate(-2deg);
+    width:120px;height:32px;background:rgba(244,185,66,.5);border-radius:3px}
+  .frame{position:absolute;right:64px;top:118px;width:330px;background:#fff;padding:14px;
+    border-radius:22px;box-shadow:0 20px 50px rgba(17,24,39,.12);transform:rotate(-2.4deg)}
+  .frame img{display:block;width:100%;height:250px;object-fit:cover;border-radius:14px}
+  .bubble{position:absolute;right:14px;top:-22px;background:#111827;color:#fff;padding:10px 20px;
+    border-radius:18px 18px 18px 5px;font-family:'Caveat',cursive;font-size:28px;line-height:1;
+    box-shadow:0 10px 26px rgba(17,24,39,.25)}
+</style>
+</head>
+<body>
+  <div class="logo"><i></i>dregeup</div>
+
+  <div class="frame">
+    <span class="tape"></span>
+    <img src="./hero-lecture.jpg" alt="">
+    <span class="bubble">Dream Big!</span>
+  </div>
+
+  <svg class="doodle" style="left:600px;top:96px" width="62" height="62" viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M30 6 L34 22 L50 26 L34 30 L30 46 L26 30 L10 26 L26 22 Z"/>
+  </svg>
+  <svg class="doodle" style="left:598px;top:496px;transform:rotate(9deg)" width="58" height="44" viewBox="0 0 54 40" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4 20 L27 8 L50 20 L27 32 Z"/><path d="M46 22 v9"/>
+  </svg>
+
+  <h1>Guiding talents,<br>shaping <span class="ul">futures<svg viewBox="0 0 300 22" preserveAspectRatio="none"><path d="M4 15 C 62 4, 128 20, 296 8"/></svg></span>.</h1>
+
+  <p class="sub">Explore top colleges, discover the right courses and get admission guidance — all in one place.</p>
+
+  <div class="stats">
+    <div class="stat"><b>50+</b><span>Colleges</span></div>
+    <div class="stat"><b>100+</b><span>Courses</span></div>
+    <div class="stat"><b>250+</b><span>Counsellors</span></div>
+    <div class="hand">Counselling is free.</div>
+  </div>
+</body>
+</html>

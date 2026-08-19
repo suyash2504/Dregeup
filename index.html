@@ -15,6 +15,39 @@
       name="description"
       content="Explore top colleges, discover the right courses and get free admission guidance — all in one place. 50+ colleges, 100+ courses, 250+ expert counsellors."
     />
+
+    <!--
+      These social tags are STATIC on purpose, and they are the ones that
+      actually matter. WhatsApp, Facebook, LinkedIn and X fetch the raw HTML
+      and do not execute JavaScript, so the per-route tags that useSeo() writes
+      at runtime are invisible to them — every shared link previews with what
+      is below. Making previews route-specific needs prerendering or SSR; until
+      then, keep this generic enough to be true of any page on the site.
+    -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Dregeup" />
+    <meta property="og:title" content="Dregeup — Explore Top Colleges &amp; Get Free Admission Guidance" />
+    <meta
+      property="og:description"
+      content="Explore top colleges, discover the right courses and get admission guidance — all in one place. Counselling is free."
+    />
+    <meta property="og:url" content="https://dregeup.com/" />
+    <meta property="og:image" content="https://dregeup.com/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Dregeup — guiding talents, shaping futures. 50+ colleges, 100+ courses, 250+ counsellors."
+    />
+    <meta property="og:locale" content="en_IN" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Dregeup — Explore Top Colleges &amp; Get Free Admission Guidance" />
+    <meta
+      name="twitter:description"
+      content="Explore top colleges, discover the right courses and get admission guidance — all in one place. Counselling is free."
+    />
+    <meta name="twitter:image" content="https://dregeup.com/og-image.png" />
   </head>
   <body>
     <div id="root"></div>

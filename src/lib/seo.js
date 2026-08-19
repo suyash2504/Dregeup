@@ -33,7 +33,20 @@ export function useSeo({ title, description, path, schema, noindex } = {}) {
     set('meta[property="og:url"]', { property: 'og:url', content: url })
     set('meta[property="og:type"]', { property: 'og:type', content: 'website' })
     set('meta[property="og:site_name"]', { property: 'og:site_name', content: site.name })
+
+    // Kept in sync with the static tags in index.html. Note that social
+    // crawlers never see these — they do not run JavaScript, so index.html is
+    // what governs link previews. These exist so the DOM is self-consistent
+    // for anything that inspects the live page.
+    const image = `${site.url}/og-image.png`
+    set('meta[property="og:image"]', { property: 'og:image', content: image })
+    set('meta[property="og:image:width"]', { property: 'og:image:width', content: '1200' })
+    set('meta[property="og:image:height"]', { property: 'og:image:height', content: '630' })
+
     set('meta[name="twitter:card"]', { name: 'twitter:card', content: 'summary_large_image' })
+    set('meta[name="twitter:title"]', { name: 'twitter:title', content: full })
+    set('meta[name="twitter:description"]', { name: 'twitter:description', content: desc })
+    set('meta[name="twitter:image"]', { name: 'twitter:image', content: image })
 
     const robots = document.head.querySelector('meta[name="robots"]')
     if (noindex) {
