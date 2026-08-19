@@ -1,0 +1,23 @@
+{
+  "name": "dregeup",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Dregeup — explore top colleges, discover the right courses and get admission guidance.",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build && node scripts/build-sitemap.mjs",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "react-router-dom": "^7.18.2"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "@vitejs/plugin-react": "^6.0.5",
+    "tailwindcss": "^4.3.3",
+    "vite": "^8.2.1"
+  }
+}
