@@ -35,6 +35,50 @@ const sizes = {
   lg: 'px-8 py-[18px] text-[16px] rounded-[16px]',
 }
 
+/**
+ * `puck` replaces the trailing arrow with a dark circular badge that rotates
+ * on hover. It carries its own padding — a puck needs a tight right edge and a
+ * roomy left one — so it deliberately opts out of the `sizes` map rather than
+ * fighting it with overrides.
+ */
+const puckSizes = {
+  md: 'py-[7px] pl-6 pr-[9px] text-[15px] gap-3',
+  sm: 'py-[6px] pl-5 pr-2 text-[14px] gap-3',
+  lg: 'py-[9px] pl-8 pr-[11px] text-[16px] gap-3.5',
+}
+
+const puckDims = {
+  md: 'h-[34px] w-[34px]',
+  sm: 'h-[30px] w-[30px]',
+  lg: 'h-[38px] w-[38px]',
+}
+
+function Puck({ size, variant }) {
+  return (
+    <span
+      aria-hidden="true"
+      className={cn(
+        'grid shrink-0 place-items-center rounded-full transition-transform duration-250 ease-[var(--ease-out)] group-hover:-rotate-45',
+        variant === 'dark' ? 'bg-brand text-ink' : 'bg-ink text-brand',
+        puckDims[size]
+      )}
+    >
+      <svg
+        width="14"
+        height="14"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M5 12h14M13 6l6 6-6 6" />
+      </svg>
+    </span>
+  )
+}
+
 export function Button({
   as,
   to,
@@ -42,6 +86,7 @@ export function Button({
   variant = 'primary',
   size = 'md',
   arrow = false,
+  puck = false,
   className,
   children,
   ...rest
@@ -51,14 +96,14 @@ export function Button({
     'transition-[transform,box-shadow,background-color,border-color] duration-250 ease-[var(--ease-out)]',
     'disabled:pointer-events-none disabled:opacity-50',
     variants[variant],
-    sizes[size],
+    puck ? cn('rounded-full', puckSizes[size]) : sizes[size],
     className
   )
 
   const body = (
     <>
       {children}
-      {arrow && <ArrowRight />}
+      {puck ? <Puck size={size} variant={variant} /> : arrow && <ArrowRight />}
     </>
   )
 

@@ -83,7 +83,7 @@ export default function Navbar() {
               carries `inline-flex`, and two display utilities on one element
               resolve by stylesheet order, not by class order. */}
           <span className="hidden sm:block">
-            <Button to="/counselling" size="sm" className="rounded-full">
+            <Button to="/counselling" size="sm" puck>
               Free Counselling
             </Button>
           </span>
