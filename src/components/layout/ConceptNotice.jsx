@@ -3,7 +3,7 @@
  * their site. Anyone landing here from a shared link has to be able to tell
  * that at a glance — it carries their real phone number and email.
  */
-const CASE_STUDY = 'https://s7labs.in/work/dregeup'
+const CASE_STUDY = 'https://s7-labs.netlify.app/work/dregeup'
 
 export default function ConceptNotice() {
   return (
