@@ -49,7 +49,7 @@ export function useSeo({ title, description, path, schema, noindex } = {}) {
     set('meta[name="twitter:image"]', { name: 'twitter:image', content: image })
 
     const robots = document.head.querySelector('meta[name="robots"]')
-    if (noindex) {
+    if (noindex || site.noindex) {
       set('meta[name="robots"]', { name: 'robots', content: 'noindex,follow' })
     } else if (robots) {
       robots.remove()

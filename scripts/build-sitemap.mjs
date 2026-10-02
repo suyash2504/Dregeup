@@ -7,7 +7,7 @@ import { writeFileSync } from 'node:fs'
 import { colleges } from '../src/data/catalogue.js'
 import { exams } from '../src/data/exams.js'
 
-const ORIGIN = process.env.SITE_ORIGIN ?? 'https://dregeup.com'
+const ORIGIN = process.env.SITE_ORIGIN ?? 'https://dregeup-concept.netlify.app'
 
 const staticRoutes = [
   { path: '/', priority: '1.0', changefreq: 'weekly' },

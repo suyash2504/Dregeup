@@ -3,6 +3,7 @@ import { Route, Routes, useLocation } from 'react-router-dom'
 import Navbar from './components/layout/Navbar'
 import Footer from './components/layout/Footer'
 import BackToTop from './components/layout/BackToTop'
+import ConceptNotice from './components/layout/ConceptNotice'
 import Home from './pages/Home'
 
 // Home ships in the main bundle; everything else is split per route.
@@ -40,6 +41,7 @@ export default function App() {
   return (
     <>
       <ScrollToTop />
+      <ConceptNotice />
       <Navbar />
       <main id="main" tabIndex={-1} className="outline-none">
         <Suspense fallback={<RouteFallback />}>
