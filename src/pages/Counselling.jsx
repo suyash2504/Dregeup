@@ -40,7 +40,7 @@ export default function Counselling() {
               <div className="relative rounded-[20px] bg-paper p-[13px] shadow-[var(--shadow-lift)] [transform:rotate(1.2deg)]">
                 <Tape className="left-[30%]" />
                 <img
-                  src="/photos/students-talking.jpg"
+                  src={`${import.meta.env.BASE_URL}photos/students-talking.jpg`}
                   alt="Students talking and laughing together in a lecture hall"
                   width="1000"
                   height="563"

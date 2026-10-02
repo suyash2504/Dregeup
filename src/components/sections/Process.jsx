@@ -15,7 +15,7 @@ export default function Process() {
           <div className="rv d2 relative rounded-[20px] bg-paper p-[13px] shadow-[var(--shadow-lift)] [transform:rotate(1.4deg)] transition-transform duration-500 ease-[var(--ease-out)] hover:[transform:rotate(0.3deg)_translateY(-4px)]">
             <Tape className="left-[22%]" />
             <img
-              src="/photos/students-collab.jpg"
+              src={`${import.meta.env.BASE_URL}photos/students-collab.jpg`}
               alt="A group of students working together around a laptop"
               width="1200"
               height="675"

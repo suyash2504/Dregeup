@@ -67,7 +67,7 @@ export default function About() {
             <div className="relative rounded-[20px] bg-paper p-[13px] shadow-[var(--shadow-lift)] [transform:rotate(-1.4deg)]">
               <Tape className="left-[38%]" />
               <img
-                src="/photos/graduate.jpg"
+                src={`${import.meta.env.BASE_URL}photos/graduate.jpg`}
                 alt="A graduating student in cap and gown, smiling"
                 width="900"
                 height="506"

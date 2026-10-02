@@ -22,7 +22,9 @@ export function useSeo({ title, description, path, schema, noindex } = {}) {
   useEffect(() => {
     const full = title ? `${title} — ${site.name}` : `${site.name} — ${site.description}`
     const desc = description ?? site.description
-    const url = `${site.url}${path ?? window.location.pathname}`
+    // Router paths exclude the /Dregeup/ base; window.location does not.
+    const route = path ?? '/' + window.location.pathname.slice(import.meta.env.BASE_URL.length)
+    const url = `${site.url}${route}`
 
     document.title = full
 

@@ -6,7 +6,7 @@
   "description": "Dregeup — explore top colleges, discover the right courses and get admission guidance.",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && node scripts/build-sitemap.mjs",
+    "build": "vite build && node scripts/build-sitemap.mjs && node scripts/spa-fallback.mjs",
     "preview": "vite preview"
   },
   "dependencies": {

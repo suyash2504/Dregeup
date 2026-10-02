@@ -91,7 +91,7 @@ export default function Hero() {
             <div className="rv d3 relative rounded-[20px] bg-paper p-[13px] shadow-[var(--shadow-lift)] [transform:rotate(-1.6deg)] transition-transform duration-500 ease-[var(--ease-out)] hover:[transform:rotate(-0.4deg)_translateY(-4px)]">
               <Tape />
               <img
-                src="/photos/hero-lecture.jpg"
+                src={`${import.meta.env.BASE_URL}photos/hero-lecture.jpg`}
                 alt="Students seated together in a lecture hall, listening and taking notes"
                 width="1200"
                 height="675"

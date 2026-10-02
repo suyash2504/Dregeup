@@ -3,6 +3,9 @@ import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
+  // GitHub Pages serves the project from /Dregeup/. Absolute, not './', because
+  // deep routes like /exams/cat would resolve a relative base against the route.
+  base: '/Dregeup/',
   plugins: [react(), tailwindcss()],
   build: {
     rollupOptions: {

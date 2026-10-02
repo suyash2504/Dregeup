@@ -8,8 +8,8 @@ export const site = {
   name: 'Dregeup',
   tagline: 'Guiding talents, shaping future.',
   // Hosted as a concept, not on Dregeup's own domain — see ConceptNotice.
-  url: 'https://dregeup-concept.netlify.app',
-  /** Whole site is noindex: it must never compete with dregeup.com in search. */
+  url: 'https://suyash2504.github.io/Dregeup',
+  /** Whole site is noindex (robots meta): it must never compete with dregeup.com in search. */
   noindex: true,
   description:
     'Explore top colleges, discover the right courses and get free admission guidance — all in one place.',
